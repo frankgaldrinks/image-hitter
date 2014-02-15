@@ -1,0 +1,43 @@
+extends partials/innerlay
+
+block inside
+  h2= title
+  p Page #{data.page}
+  hr
+  #hitbox
+    -var hits = data.hits
+    each hit, i in hits
+      .ipblock(data-id=hit._id)
+        span.remove-me x
+        p
+          strong Date: 
+          span #{hit.created}
+        p
+          strong Referer: 
+          span #{hit.referer}
+        p
+          strong User-Agent: 
+          span #{hit.useragent}
+        p 
+          strong IP: 
+          span #{hit.ip}
+        p 
+          strong Hostname: 
+          span #{hit.hostname}
+        p 
+          strong Org: 
+          span #{hit.org}
+        p 
+          strong City: 
+          span #{hit.city}
+        p 
+          strong Region: 
+          span #{hit.region}
+        p 
+          strong Country: 
+          span #{hit.country}
+        hr
+  if (pages > 1)
+  .pagination
+    ul
+      != createPagination(data.pages, data.page, data.requrl)
